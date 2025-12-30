@@ -1,0 +1,16 @@
+{
+  "name": "n8n-runner",
+  "version": "1.0.0",
+  "description": "NodeJS runner that starts an n8n server and pings it every 30 seconds to keep it alive.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "n8n": "n8n start"
+  },
+  "dependencies": {
+    "n8n": "^1.77.0",
+    "sqlite3": "^5.1.7"
+  },
+  "author": "",
+  "license": "MIT"
+}
