@@ -1,5 +1,7 @@
 const { spawn } = require("child_process");
 const http = require("http");
+const https = require("https");
+const url = require("url");
 
 // ======================
 // Start n8n
@@ -22,7 +24,10 @@ n8n.on("exit", (code) => {
 const N8N_URL = process.env.N8N_URL || "http://localhost:5678/healthz";
 
 function pingN8N() {
-  const req = http.get(N8N_URL, (res) => {
+  const parsedUrl = new url.URL(N8N_URL);
+  const client = parsedUrl.protocol === "https:" ? https : http;
+  
+  const req = client.get(N8N_URL, (res) => {
     console.log(
       `[PING] ${new Date().toISOString()} - Status: ${res.statusCode}`
     );
